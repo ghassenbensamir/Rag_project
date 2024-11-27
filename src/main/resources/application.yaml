@@ -1,0 +1,26 @@
+spring:
+  application:
+      name:Rag_project
+  datasource:
+    url: jdbc:postgresql://localhost:5432/Rag_project
+    username: postpostgres
+    password: postgres
+  ai:
+    ollama:
+      base-url: http://localhost:11434/
+      chat:
+        enabled: true
+        options:
+          model:
+      embedding:
+        enabled: true
+        model: all-minilm
+
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+  sql:
+    init:
+      mode: always
