@@ -1,6 +1,11 @@
+server:
+  port: 9000
 spring:
+
   application:
-      name:Rag_project
+    name: Rag_project
+
+
   datasource:
     url: jdbc:postgresql://localhost:5432/Rag_project
     username: postpostgres
@@ -11,16 +16,20 @@ spring:
       chat:
         enabled: true
         options:
-          model:
+          model: llama3.2:1b  # Explicit model for chat
+          temperature: 0.9
       embedding:
         enabled: true
-        model: all-minilm
-
+        options:
+          model: mxbai-embed-large:latest  # Explicit model for embedding
     vectorstore:
       pgvector:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
-        dimensions: 1536
+        dimensions: 1024
+        remove-existing-vector-store-table: true
+        #schema-validation: true
+        initialize-schema: true
   sql:
     init:
       mode: always
